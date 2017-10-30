@@ -45,6 +45,8 @@ If your data is somewhere other than the default location mentioned above, pass 
   'contour_type':name_of_type_of_contours_you_are_using_eg_i-contours_or_o-contours}
   ```
 
+  If the batch_size does not divide evenly into the number of training examples, the generator will yield the largest possible number of complete batches and then begin the next epoch. Since the examples are shuffled each epoch, the leaving off of a few examples each time will not cause any systematic under-sampling of certain datapoints.
+
 ------------------
 
 
