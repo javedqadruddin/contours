@@ -17,9 +17,9 @@ To set up the package, simply clone this repo, navigate to the root directory of
 pip install -e .
 ```
 
-The default location where you should store your data is in the package root directory in a subdirectory called data/final_data
+The default location where you should store your data is in the package root directory in a subdirectory called data/final_data. If you unzip the data file for this Challenge in ```repo_root_directory/data/``` the data will then already be in the correct directory structure for use with this package.
 
-So, the contour data should go in:
+If you want to set it up manually, the contour data should go in:
 
 ```repo_root_directory/data/final_data/contourfiles/```
 
@@ -35,7 +35,7 @@ The csv file should have the name of the subdirectory containing the dicom for a
 
 Filenames should follow the same naming conventions as those provided as samples in this Challenge.
 
-If you wish to use a different directory, you can do so by passing a setting object to the data generator (more on that below)
+If you wish to use a different directory structure, you can do so by passing a setting object to the data generator (more on that below)
 
 ------------------
 
