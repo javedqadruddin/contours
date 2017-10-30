@@ -35,6 +35,8 @@ my_generator = TrainingDataGenerator()
 gen = TrainingDataGenerator.flow_contour_data(my_batch_size)
 ```
 
+You can then call ```next(gen)``` to get a batch of data. Or, you can pass the generator gen as a parameter to a method like keras.model.fit_generator().  See [here](https://keras.io/models/model/) for that usage.
+
 If your data is somewhere other than the default location mentioned above, pass TrainingDataGenerator a settings object when you instantiate it.  The settings object should be a dict of the following format:
 ```python
 {'csv':path_to_your_csv_file_that_links_contour_and_image_files,
@@ -42,8 +44,6 @@ If your data is somewhere other than the default location mentioned above, pass 
   'xfiles':path_to_your_image_files,
   'contour_type':name_of_type_of_contours_you_are_using_eg_i-contours_or_o-contours}
   ```
-
-You can then call next(gen) to get a batch of data. Or, you can pass the generator gen as a parameter to a method like keras.model.fit_generator().  See [here](https://keras.io/models/model/) for that usage.
 
 ------------------
 
