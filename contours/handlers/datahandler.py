@@ -20,7 +20,7 @@ SETTINGS = {'csv':path.join(DATA_DIR,'link.csv'),
             'contour_type':'i-contours'}
 
 
-def get_directories(settings):
+def _get_directories(settings):
     """Gets the names of the directories containing the training data files
     from the csv that contains them and returns as a list of tuples for the
     directory containing input data (images) and directory containing
@@ -45,35 +45,60 @@ def get_directories(settings):
     return directory_paths
 
 
-def get_img_filename(contour_filename):
+def _get_img_filename(contour_filename):
+    """ mapping contour filename to the corresponding image filename """
     prefix_removed = contour_filename.replace(CONTOUR_FILENAME_PREFIX, '')
     suffix_removed = prefix_removed.split('-')[0]
     preceding_zeros_removed = suffix_removed.lstrip('0')
     return preceding_zeros_removed + IMG_FILE_EXTENSION
 
 
-def get_files(x_dir, y_dir):
+def _get_files(x_dir, y_dir):
+    """Get paths to corresponding DICOM file contour file pairs
+
+    :param x_dir: filepath to a directory containing DICOM files
+    :param y_dir: filepath to a directory containing contour files
+    :return: list of tuples of paths to corresponding DICOM file, contour file
+    pairs
+    """
     filepaths = []
     img_filenames = listdir(x_dir)
+
     for contour_filename in listdir(y_dir):
-        corresponding_img_filename = get_img_filename(contour_filename)
+        corresponding_img_filename = _get_img_filename(contour_filename)
+        # if there is no corresponding image file, ignore this contour file
         if corresponding_img_filename in img_filenames:
             img_path = path.join(x_dir, corresponding_img_filename)
             contour_path = path.join(y_dir, contour_filename)
             filepaths.append((img_path, contour_path))
+
     return filepaths
 
 
 def get_file_list(settings=SETTINGS):
-    data_directories = get_directories(settings)
+    """Get list of paths to all training data files in image,target pairs
+
+    :param settings: if the data are not in the default folder described in
+    README.md, pass this method a settings object in the following format:
+    {'csv':~path to your csv file linking image files and contour files~,
+                'yfiles':~path to your contour files~,
+                'xfiles':~path to your image files~,
+                'contour_type':~either 'i-contours' for inner contours or
+                'o-contours' for outer contours}
+    :return: list of tuples of paths to corresponding DICOM file, contour file
+    pairs
+    """
+    data_directories = _get_directories(settings)
     file_list = []
     for x_dir, y_dir in data_directories:
-        for img_file, contour_file in get_files(x_dir, y_dir):
+        for img_file, contour_file in _get_files(x_dir, y_dir):
             file_list.append((img_file, contour_file))
     return file_list
 
+
 def main():
-    get_file_list()
+    """ this script can be run from command line for testing purposes"""
+    print(get_file_list())
 
 if __name__ == "__main__":
     main()
