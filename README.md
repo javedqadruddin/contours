@@ -20,12 +20,19 @@ pip install -e .
 The default location where you should store your data is in the package root directory in a subdirectory called data/final_data
 
 So, the contour data should go in:
+
 ```repo_root_directory/data/final_data/contourfiles/```
+
 and the image data in dicom (.dcm) file format should go in:
+
 ```repo_root_directory/data/final_data/dicoms/```
+
 Within those directories, the actual contour files and .dcm files should be in subdirectories corresponding to each patient or study. A csv file linking the correct dicom files with the corresponding contour files should be included in:
+
 ```repo_root_directory/data/final_data/```
-The csv file should have the name of the subdirectory containing the dicom for a given patient or study in the first column and the contour files for that patient in the second column.  
+
+The csv file should have the name of the subdirectory containing the dicom for a given patient or study in the first column and the name of the subdirectory containing the contour files for that patient or study in the second column.  
+
 Filenames should follow the same naming conventions as those provided as samples in this Challenge.
 
 If you wish to use a different directory, you can do so by passing a setting object to the data generator (more on that below)
