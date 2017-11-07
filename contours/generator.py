@@ -64,7 +64,7 @@ class TrainingDataGenerator(object):
                 output.append((img_file, inner_cont_file, common_files_outer[img_file]))
         return output
 
-    def flow_contour_data(self, batch_size=8):
+    def flow_contour_data(self, batch_size=8, epoch_msg=False):
         """Returns generator that perpetually yields batches, randomizing
         the order of training examples each epoch
 
@@ -105,3 +105,5 @@ class TrainingDataGenerator(object):
                     current_batch_img = []
                     current_batch_target = []
                     current_batch_outer = []
+            if epoch_msg:
+                yield 'end epoch'
