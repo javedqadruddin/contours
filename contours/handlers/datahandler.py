@@ -4,20 +4,9 @@ an array of the filenames in x,y (input, target) pairs"""
 from os import path, listdir
 import csv
 
-HERE = path.abspath(path.dirname(__file__))
-CONTOURS_DIR = path.dirname(HERE)
-PACKAGE_DIR = path.dirname(CONTOURS_DIR)
-DATA_DIR = path.join(PACKAGE_DIR, 'data/final_data')
-CONTOURFILES_DIR = path.join(DATA_DIR, 'contourfiles')
-IMGFILES_DIR = path.join(DATA_DIR, 'dicoms')
 
 CONTOUR_FILENAME_PREFIX = 'IM-0001-'
 IMG_FILE_EXTENSION = '.dcm'
-
-SETTINGS = {'csv':path.join(DATA_DIR,'link.csv'),
-            'yfiles':CONTOURFILES_DIR,
-            'xfiles':IMGFILES_DIR,
-            'contour_type':'i-contours'}
 
 
 def _get_directories(settings):
@@ -75,7 +64,7 @@ def _get_files(x_dir, y_dir):
     return filepaths
 
 
-def get_file_list(settings=SETTINGS):
+def get_file_list(settings):
     """Get list of paths to all training data files in image,target pairs
 
     :param settings: if the data are not in the default folder described in
