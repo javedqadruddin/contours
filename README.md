@@ -166,4 +166,4 @@ You can do the same thing in reverse to set disconnected islands of 'True' to 'F
 ![Alt text](./readme_images/prediction_with_outlying_islands.png?raw=true "Prediction with internal gaps")
 
 
-
+The calculations for the analysis in Phase 2 can be found in experiments.ipynb in this repo. I normally would not put a notebook in a production repo, but for the purposes of this exercise, I thought it would be helpful for you to be able to look at them if you wanted.  
