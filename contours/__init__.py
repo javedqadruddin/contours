@@ -3,3 +3,4 @@ from . import lib
 from . import parsers
 from . import preprocessors
 from . import handlers
+from . import model
