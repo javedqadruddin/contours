@@ -1,7 +1,7 @@
 """ Tools for evaluating different thresholds
 You can find these functions and examples of their uses in Experiments.ipynb
 """
-
+from contours.lib.vistools import visualize
 from contours.lib import utils
 from contours import model
 
@@ -54,6 +54,17 @@ def get_precision_recall(correct_pixels, missed_pixels, incorrect_pixels):
 
 
 def evaluate_batch(batch, threshold, show_images=False, clean_data=False):
+    """Returns array of tuples containing precision and recall for each image
+    in a batch of images produced by a generator from generator.py
+
+    :param batch: a batch of images along with inner and outer contours
+    :param threshold: choice of threshold to test (float or int)
+    :param show_images: boolean choice if user wants to display images
+    depicting results of the evaluation
+    :param clean_data: boolean choice if user wants to remove bad data where
+    inner and outer contours don't line up
+    :return: array of tuples containing precision and recall for each image
+    """
     metrics = []
     images, inner_masks, outer_masks = batch
     for image, inner_mask, outer_mask in zip(images, inner_masks, outer_masks):
